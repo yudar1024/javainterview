@@ -2,6 +2,7 @@ package com.roger.javainterview.rocketmqexample;
 
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.client.producer.SendResult;
+import org.apache.rocketmq.client.producer.selector.SelectMessageQueueByRandom;
 import org.apache.rocketmq.common.message.Message;
 import org.apache.rocketmq.remoting.common.RemotingHelper;
 
@@ -26,8 +27,10 @@ public class Producer {
                     ("Hello RocketMQ " + i).getBytes(RemotingHelper.DEFAULT_CHARSET) /* Message body */
             );
             msg.setKeys("pgroup1"+"node1"+"index1");
+//            msg.setDelayTimeLevel(1); 设置延迟发送
             // 发送消息到一个Broker
-            SendResult sendResult = producer.send(msg);
+//            SendResult sendResult = producer.send(msg);
+            SendResult sendResult = producer.send(msg,new SelectMessageQueueByRandom(),null); //选择发送路由
             // 通过sendResult返回消息是否成功送达
             System.out.printf("%s%n", sendResult);
         }
