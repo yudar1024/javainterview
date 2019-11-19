@@ -18,7 +18,9 @@ public class Producer {
         producer.setRetryTimesWhenSendFailed(5);
 //        producer.setRetryTimesWhenSendAsyncFailed(5);
         // 设置NameServer的地址
-        producer.setNamesrvAddr("localhost:9876");
+//        使用java 参数 -Drocketmq.namesrv.domain=localhost:3000 动态获取nameserver 地址，返回值为 192.156.19.2:9876;192.18.28.198:9876
+//        完整的endpoint地址url为 http://localhost:3000/rocketmq/nsaddr
+//        broker 的启动配置中，将 namesrvAddr = http://localhost:3000/rocketmq/nsaddr 即可动态获取 nsserver
         // 启动Producer实例
         producer.start();
         for (int i = 0; i < 100; i++) {
