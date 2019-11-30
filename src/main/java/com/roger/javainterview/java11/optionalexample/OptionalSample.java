@@ -8,12 +8,6 @@ public class OptionalSample {
     Optional<Integer> price1 = Optional.of(0);
     Optional<Integer> price2 = Optional.empty();
     Optional<Integer> price3 = Optional.ofNullable(null);
-    price3.ifPresentOrElse( p-> System.out.println(p),new Thread(new Runnable() {
-      @Override
-      public void run() {
-        System.out.println("null value");
-      }
-    }));
 
     // 当null时 返回42
     int p2 = price2.orElseGet(() -> 42);
@@ -21,12 +15,6 @@ public class OptionalSample {
     System.out.println("p2=" + p2);
     System.out.println("p3=" + p3);
     price3 = Optional.of(10);
-    price3.ifPresentOrElse(p -> {
-      System.out.println(p);
-    }, () -> System.out.println("null value"));
-    price3.ifPresentOrElse(p -> {
-      processValue(p);
-    }, () -> System.out.println("null value"));
 
   }
 
